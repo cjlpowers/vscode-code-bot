@@ -1,0 +1,70 @@
+{
+  "name": "code-bot",
+  "displayName": "code-bot",
+  "description": "Code assistant for VS Code",
+  "version": "0.0.1",
+  "publisher": "cjlpowers",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cjlpowers/vscode-code-bot"
+  },
+  "engines": {
+    "vscode": "^1.91.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:code-bot.reviseCode"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "code-bot.reviseCode",
+        "title": "code-bot: Revise Code"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "Code Bot Configuration",
+      "properties": {
+        "code-bot.prompt": {
+          "type": "string",
+          "default": "Revise this code is it is ready to be committed for peer review.",
+          "description": "The default prompt for code revision."
+        },
+        "code-bot.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Your OpenAI API key."
+        },
+        "code-bot.model": {
+          "type": "string",
+          "default": "gpt-3.5-turbo",
+          "description": "The OpenAI model to use for code revision."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "node esbuild.config.js",
+    "lint": "eslint \"src/**/*.ts\"",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.6.0",
+    "@types/node": "^20.14.10",
+    "@types/vscode": "^1.91.0",
+    "@typescript-eslint/eslint-plugin": "^5.43.0",
+    "@typescript-eslint/parser": "^5.43.0",
+    "axios": "^1.7.2",
+    "esbuild": "^0.15.18",
+    "eslint": "^8.45.0",
+    "globals": "^15.8.0",
+    "typescript": "^5.1.6",
+    "vsce": "^2.15.0"
+  }
+}
